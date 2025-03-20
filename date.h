@@ -6,7 +6,7 @@
 
 class Date {
 	private:
-		std::string datestring
+		std::string dateString;
 		int month;
 		int day;
 		int year;
@@ -15,7 +15,7 @@ class Date {
 
 		void init(std::string dateString);
 
-		void printdate();
+		void printDate();
 };
 #endif
 

@@ -16,7 +16,7 @@ Student::Student(){
 }
 
 Student::Student(std::string studentString){
-	student::init(studentString);
+	Student::init(studentString);
 }
 
 Student::~Student(){
@@ -36,7 +36,7 @@ void Student::init(std::string studentString){
 	std::string state;
 	std::string zip;
 	std::string tDob;
-	std::string tGradeDate;
+	std::string tGradDate;
 	std::string tCreditHours;
 
 	getline(ss, firstName, ',');
