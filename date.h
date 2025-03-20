@@ -6,6 +6,7 @@
 
 class Date {
 	private:
+		std::string datestring
 		int month;
 		int day;
 		int year;
