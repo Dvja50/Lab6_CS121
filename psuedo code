@@ -1,0 +1,154 @@
+Date.cpp
+ Date
+
+    function Date()  // Default constructor
+        set dateString to "0/0/0000"
+        set month to 0
+        set day to 0
+        set year to 0
+    end
+
+    function init(dateString)  // Initialize date from string
+        set Date::dateString to dateString
+
+        create stringstream object ss
+        create strings tMonth, tDay, tYear
+
+        clear ss
+        set ss content to dateString
+
+        extract tMonth from ss (until '/')
+        exctract tDay from ss (until '/')
+        extract tYear from ss (until end)
+
+        clear ss
+        reset ss content to an empty string
+
+"t" mean temporary
+
+        intert tDay, tMonth, and tYear into ss as space-separated values
+        extract integer values from ss and assign to day, month, and year
+    end 
+
+    function printDate()  // Print formatted date
+        declare array months with values:
+            ["Null", "January", "February", "March", "April", "May", "June",
+             "July", "August", "September", "October", "November", "December"]
+
+        if month is between 1 and 12 then
+            print months[month] + " " + day + ", " + year
+        else
+            print "Invalid Date"
+end 
+end
+end class
+
+
+
+Address.h
+
+
+ Address
+
+  function Address()  // Default constructor
+        set street to empty string ("")
+        set city to empty string ("")
+        set zip to empty string ("")
+        set state to empty string ("")
+    end
+
+    function init(street, city, zip, state)  // Initialize address details
+        SET Address::street to street
+        SET Address::city to city
+        SET Address::zip to zip
+        SET Address::state to state
+ end
+
+    function printAddress()  // Print address details
+        PRINT street
+        PRINT city + " " + state + ", " + zip
+    end
+
+
+
+
+
+Student.cpp implementation
+
+ Student
+
+    function Student()  // Default constructor
+        set studentString to an empty string
+        set firstName to an empty string
+        set lastName to an empty string
+        create new Date object and assign it to dob
+        create new Date object and assign it to expectedGrad
+        create new Address object and assign it to address
+        set creditHours to 0
+  end
+
+    function Student(studentString)  // Parameterized constructor
+        call init(studentString)
+  end
+
+    FUNCTION ~Student()  // Destructor
+        DELETE dob
+        DELETE expectedGrad
+        DELETE address
+   end
+
+    function init(studentString)  // Initialize student data
+        set Student::studentString to studentString
+
+        create stringstream object ss
+        set ss content to studentString
+
+        declare street, city, state, zip as strings
+        declare tDob, tGradDate, tCreditHours as strings
+
+        Extract firstName from ss (until ',')
+        Extract lastName from ss (until ',')
+        Extract street from ss (until ',')
+        Extract city from ss (until ',')
+        Extract state from ss (until ',')
+        Extract zip from ss (until ',')
+        Extract tDob from ss (until ',')
+        Extract tGradDate from ss (until ',')
+        Extract tCreditHours from ss (until end)
+
+        call address->init(street, city, state, zip)
+        call dob->init(tDob)
+        call expectedGrad->init(tGradDate)
+
+        Clear ss and set its content to tCreditHours
+        extract integer from ss and assign to creditHours
+   end
+
+    function printStudent()
+        print firstName and lastName
+        call address->printAddress()
+
+        print "DOB: "
+        call dob->printDate()
+        print "Grad: "
+        call expectedGrad->printDate()
+
+        print "Credits: " followed by creditHours
+        print "_____________________________________"
+        print newline
+    end
+
+    function getLastFirst() returning string
+        create stringstream ss
+        clear ss
+        apend lastName + ", " + firstName to ss
+        return ss as string
+  end
+
+    function getLastName() returning string
+        return lastName
+  end
+
+    function getFirstName() returning string
+        return firstName
+    end
