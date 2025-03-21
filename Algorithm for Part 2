@@ -2,6 +2,7 @@ Part 2 starts by creating an empty list of students. It loads student data from 
 and adds it to the list. The program then shows a menu where the user can choose to print student names (showStudentNames()), print full student details (printStudents()),
 or search for a student by last name (findStudent()). If the user enters an invalid option, they are prompted again. 
 The menu keeps appearing until the user chooses 0 to exit. Before closing, the program calls delStudents() to free memory and prevent leaks.
+Make sure to define everything.
  Create an empty list of Student pointers (students)  
     Call loadStudents(students) to read data from "students.csv"  
 
