@@ -83,3 +83,7 @@ std::string Student::getLastName(){
 std::string Student::getFirstName(){
 	return firstName;
 }
+int Student::getCreditHours(){
+	return creditHours;
+}
+

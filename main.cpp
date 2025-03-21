@@ -2,7 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include <alorgithm>
+#include <algorithm>
 
 #include "date.h"
 #include "address.h"
@@ -11,6 +11,15 @@
 void testAddress();
 void testDate();
 void testStudent();
+void loadStudents(std::vector <Student*>& students);
+void showStudentNames(std::vector<Student*>& students);
+void printStudents(std::vector<Student*>& students);
+void findStudent(std::vector<Student*>& students);
+void delStudents(std::vector<Student*>& students);
+std::string menu();
+bool compFirst(Student* a, Student* b);
+bool compLast(Student* a, Student* b);
+bool compCreditHours(Student* a, Student* b);
 
 int main(){
 /*
@@ -35,14 +44,12 @@ while (keepGoing){
 			printStudents(students);
 		} else if (userChoice == "3"){
 			findStudent(students);
-		} else if (userChoice == "4"){
-			sortStudents(students);
 		}else {
 			std::cout << "Invalid Input" << std::endl;
 		}
 }
-delStudents(students);
-return 0;
+		delStudents(students);
+		return 0;
 }
 
 std::string menu(){
@@ -51,7 +58,7 @@ std::string menu(){
 	std::cout << "1) print all student names" << std::endl;
 	std::cout << "2) print all student data" << std::endl;
 	std::cout << "3) find a student" << std::endl;
-	std::cout std::endl;
+	std::cout << std::endl;
 	std::cout << "please choose 0-3: ";
 	getline(std::cin,response);
 	return response;
@@ -60,6 +67,46 @@ void loadStudents(std::vector<Student*>& students){
 	std::ifstream inFile;
 	std::string currentLine;
 
+	inFile.open("students.csv");
+	while(getline(inFile,currentLine)){
+		Student* s = new Student;
+		s ->init(currentLine);
+		students.push_back(s);
+	}
+	inFile.close();
+}
+
+void showStudentNames(std::vector<Student*>& students){
+	for(Student * student: students){
+		std::cout << student ->getLastFirst();
+		std::cout << " , " << student->getCreditHours() << std::endl;
+	}
+}
+
+void printStudents(std::vector<Student*>& students) {
+    for (Student* student : students) {
+        student->printStudent();
+    }
+}
+void findStudent(std::vector<Student*>& students) {
+    std::string lastName;
+    std::cout << "Enter last name of the student: ";
+    getline(std::cin, lastName);
+
+    bool found = false;
+    for (Student* student : students) {
+        if (student->getLastName() == lastName) {
+            student->printStudent();
+            found = true;
+        }
+    }
+    }
+void delStudents(std::vector<Student*>& students) {
+    for (Student* student : students) {
+        delete student;
+    }
+    students.clear();
+}
 
 
 
